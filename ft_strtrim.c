@@ -1,0 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mvautrot <mvautrot@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/14 14:42:01 by mvautrot          #+#    #+#             */
+/*   Updated: 2022/11/18 08:39:58 by mvautrot         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+char	*ft_strtrim(char const *s1, char const *set)
+{
+	char	*tab;
+	size_t	lens1;
+	size_t	i;
+
+	i = 0;
+	lens1 = ft_strlen (s1);
+	while (s1[i] && ft_strchr (set, s1[i]))
+		i++;
+	while (s1[lens1 - 1] && ft_strchr(set, s1[lens1 - 1]) && lens1 > i)
+		lens1 --;
+	tab = (char *) malloc (sizeof(char) * (lens1 - i + 1));
+	if (!(tab))
+		return (NULL);
+	if (tab)
+		ft_strlcpy(tab, &s1[i], lens1 - i + 1);
+	return (tab);
+}
